@@ -1,0 +1,231 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.4cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\title{\textbf{Solution of Nonlinear Equations}\\[4pt]
+\large Newton--Raphson Method and Secant Method}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-3em}
+
+\section*{Formulae Used}
+
+\textbf{Newton--Raphson method.} Starting from an initial approximation $x_{0}$,
+\begin{equation*}
+x_{n+1} \;=\; x_{n}-\frac{f(x_{n})}{f'(x_{n})}, \qquad n=0,1,2,\ldots
+\end{equation*}
+
+\textbf{Secant method.} Starting from two initial approximations $x_{0}$ and $x_{1}$,
+\begin{equation*}
+x_{n+1} \;=\; x_{n}-f(x_{n})\,\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+\;=\;\frac{x_{n-1}\,f(x_{n})-x_{n}\,f(x_{n-1})}{f(x_{n})-f(x_{n-1})},
+\qquad n=1,2,3,\ldots
+\end{equation*}
+
+In each problem the iteration is stopped when successive approximations agree to the
+required accuracy, i.e.\ when $\lvert x_{n+1}-x_{n}\rvert<\tfrac{1}{2}\times10^{-k}$
+for a result correct to $k$ decimal places. All tabulated values are rounded to six
+decimal places.
+
+%----------------------------------------------------------------------
+\section*{Problem 1}
+\textit{Find the positive root of $x^{4}-4=0$ correct to three decimal places using
+the Newton--Raphson method.}
+
+\textbf{Solution.} Let
+\[
+f(x)=x^{4}-4, \qquad f'(x)=4x^{3}.
+\]
+Take $x_{0}=1.5$.
+
+The Newton--Raphson iteration is
+\[
+x_{n+1}=x_{n}-\frac{x_{n}^{4}-4}{4x_{n}^{3}}=\frac{3x_{n}^{4}+4}{4x_{n}^{3}}.
+\]
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$n$ & $x_{n}$ & $f(x_{n})$ & $f'(x_{n})$ & $x_{n+1}$ \\
+\midrule
+0 & 1.500000 & 1.062500 & 13.500000 & 1.421296 \\
+1 & 1.421296 & 0.080736 & 11.484547 & 1.414266 \\
+2 & 1.414266 & 0.000597 & 11.314974 & 1.414214 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Since $x_{3}=x_{2}=1.4142$, the iterations have converged. Hence the positive root,
+correct to three decimal places, is
+\[
+\boxed{x \approx 1.414}
+\]
+(the exact root is $4^{1/4}=\sqrt{2}=1.414214\ldots$).
+
+%----------------------------------------------------------------------
+\section*{Problem 2}
+\textit{Find by Newton's method the real root of the equation $3x=\cos x+1$, correct
+to four decimal places.}
+
+\textbf{Solution.} Write the equation as
+\[
+f(x)=3x-\cos x-1=0, \qquad f'(x)=3+\sin x
+\]
+(with $x$ measured in radians). Taking $x_{0}=50$.
+
+The Newton--Raphson iteration is
+\[
+x_{n+1}=x_{n}-\frac{3x_{n}-\cos x_{n}-1}{3+\sin x_{n}}.
+\]
+
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$n$ & $x_{n}$ & $f(x_{n})$ & $f'(x_{n})$ & $x_{n+1}$ \\
+\midrule
+0 & 50.000000  & 148.035034 & 2.737625 & $-4.074253$ \\
+1 & $-4.074253$ & $-12.627059$ & 3.803207 & $-0.754145$ \\
+2 & $-0.754145$ & $-3.991292$ & 2.315334 & 0.969706 \\
+3 & 0.969706   & 1.343577 & 3.824720 & 0.618419 \\
+4 & 0.618419   & 0.040459 & 3.579747 & 0.607116 \\
+5 & 0.607116   & 0.000052 & 3.570501 & 0.607102 \\
+\bottomrule
+\end{tabular}
+\end{center}
+ At the fifth iteration $x_{5}=0.607116$ and
+$x_{6}=0.607102$ agree to four decimal places (both round to $0.6071$), so the
+process is stopped here. Hence the real root, correct to four decimal places, is
+\[
+\boxed{x \approx 0.6071}
+\]
+%----------------------------------------------------------------------
+\section*{Problem 3}
+\textit{Using Newton's iterative method, find the real root of $x\log_{10}x=1.2$
+correct to five decimal places.}
+
+\textbf{Solution.} Let
+\[
+f(x)=x\log_{10}x-1.2 .
+\]
+Since $\dfrac{d}{dx}\bigl(x\log_{10}x\bigr)=\log_{10}x+x\cdot\dfrac{1}{x}\log_{10}e
+=\log_{10}x+\log_{10}e$, we have
+\[
+f'(x)=\log_{10}x+0.434294 .
+\]
+Take $x_{0}=404$.
+
+The Newton--Raphson iteration is
+\[
+x_{n+1}=x_{n}-\frac{x_{n}\log_{10}x_{n}-1.2}{\log_{10}x_{n}+0.434294}.
+\]
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$n$ & $x_{n}$ & $\log_{10}x_{n}$ & $f(x_{n})$ & $f'(x_{n})$ & $x_{n+1}$ \\
+\midrule
+0 & 404.000000 & 2.606381 & 1051.778072 & 3.040676 & 58.097272 \\
+1 & 58.097272  & 1.764156 & 101.292635  & 2.198450 & 12.022708 \\
+2 & 12.022708  & 1.080002 & 11.784552   & 1.514297 & 4.240513 \\
+3 & 4.240513   & 0.627418 & 1.460576    & 1.061713 & 2.864834 \\
+4 & 2.864834   & 0.457100 & 0.109514    & 0.891394 & 2.741977 \\
+5 & 2.741977   & 0.438064 & 0.001161    & 0.872358 & 2.740646 \\
+6 & 2.740646   & 0.437853 & 0.000000    & 0.872147 & 2.740646 \\
+\bottomrule
+\end{tabular}
+\end{center}
+At the sixth
+iteration $x_{6}=2.740646$ and $x_{7}=2.740646$ agree to five decimal places (both
+round to $2.74065$), so the process is stopped here. Hence the real root, correct to
+five decimal places, is
+\[
+\boxed{x \approx 2.74065}
+\]
+
+%----------------------------------------------------------------------
+\section*{Problem 4}
+\textit{Find a root of the equation $x^{3}-2x-5=0$ using the secant method, correct
+to three decimal places.}
+
+\textbf{Solution.} Take $x_{0}=2$ and
+$x_{1}=3$, and apply the secant iteration
+\[
+x_{n+1}=x_{n}-f(x_{n})\,\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}.
+\]
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$n$ & $x_{n-1}$ & $x_{n}$ & $f(x_{n-1})$ & $f(x_{n})$ & $x_{n+1}$ \\
+\midrule
+1 & 2.000000 & 3.000000 & $-1.000000$ & 16.000000 & 2.058824 \\
+2 & 3.000000 & 2.058824 & 16.000000 & $-0.390800$ & 2.081264 \\
+3 & 2.058824 & 2.081264 & $-0.390800$ & $-0.147201$ & 2.094824 \\
+4 & 2.081264 & 2.094824 & $-0.147201$ & 0.003042 & 2.094549 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Since $x_{4}=2.094549$ and $x_{3}=2.094824$ agree to three decimal places, the
+iterations have converged to $x\approx2.094549$. Hence the root, correct to three
+decimal places, is
+\[
+\boxed{x \approx 2.095}
+\]
+
+%----------------------------------------------------------------------
+\section*{Problem 5}
+\textit{Find the root of the equation $x\,e^{x}=\cos x$ using the secant method,
+correct to four decimal places.}
+
+\textbf{Solution.}  Take $x_{0}=0$ and $x_{1}=1$, and apply the secant iteration
+\[
+x_{n+1}=x_{n}-f(x_{n})\,\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}.
+\]
+
+\begin{center}
+\begin{tabular}{cccccc}
+\toprule
+$n$ & $x_{n-1}$ & $x_{n}$ & $f(x_{n-1})$ & $f(x_{n})$ & $x_{n+1}$ \\
+\midrule
+1 & 0.000000 & 1.000000 & 1.000000 & $-2.177980$ & 0.314665 \\
+2 & 1.000000 & 0.314665 & $-2.177980$ & 0.519872 & 0.446728 \\
+3 & 0.314665 & 0.446728 & 0.519872 & 0.203545 & 0.531706 \\
+4 & 0.446728 & 0.531706 & 0.203545 & $-0.042932$ & 0.516904 \\
+5 & 0.531706 & 0.516904 & $-0.042932$ & 0.002593 & 0.517747 \\
+6 & 0.516904 & 0.517747 & 0.002593 & 0.000032 & 0.517757 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Since $x_{6}=x_{5}=0.5177$, the iterations have converged. Hence the root, correct
+to four decimal places, is
+\[
+\boxed{x \approx 0.5178}
+\]
+
+%----------------------------------------------------------------------
+\section*{Summary of Results}
+
+\begin{center}
+\begin{tabular}{clllc}
+\toprule
+No. & Equation & Method & Converged value & Required root \\
+\midrule
+1 & $x^{4}-4=0$          & Newton--Raphson & $1.414214$ & $1.414$   \\
+2 & $3x=\cos x+1$        & Newton--Raphson & $0.607102$ & $0.6071$  \\
+3 & $x\log_{10}x=1.2$    & Newton--Raphson & $2.740646$ & $2.74065$ \\
+4 & $x^{3}-2x-5=0$       & Secant          & $2.094551$ & $2.095$   \\
+5 & $x\,e^{x}=\cos x$    & Secant          & $0.517757$ & $0.5178$  \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

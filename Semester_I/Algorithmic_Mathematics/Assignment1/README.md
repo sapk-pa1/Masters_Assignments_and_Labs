@@ -72,7 +72,7 @@ and saves the comparison figure to `outputs/problem3_methods.pdf`. The figure ha
 │   │   └── secant.py              # secant(f, x0, x1, ...)
 │   └── visualizer/
 │       └── graph.py               # plot_newton, plot_secant, plot_convergence
-├── documents/                     # LaTeX write-ups (worked solutions)
+├── tex_files/                     # LaTeX write-ups (worked solutions)
 └── outputs/                       # Generated figures (problem3_methods.pdf)
 ```
 
